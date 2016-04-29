@@ -142,7 +142,7 @@ GEM
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
-    libv8 (3.16.14.3)
+    libv8 (3.16.14.15)
     listen (2.7.9)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -335,3 +335,6 @@ DEPENDENCIES
   travis-lint
   uglifier
   unicorn
+
+BUNDLED WITH
+   1.11.2
