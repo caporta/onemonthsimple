@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length => {:within => 6..40},
                        :on => :create,
-                       :if => :password
+                       :if => :password,
+                       :format => { :with => /\A.*(?=.{10,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\@\#\$\%\^\&\+\=]).*\Z/ }
 
   validates_presence_of :email
   validates_uniqueness_of :email
@@ -39,11 +40,11 @@ class User < ActiveRecord::Base
   def self.authenticate(email, password)
     auth = nil
     user = find_by_email(email)
-    raise "#{email} doesn't exist!" if !(user)
-    if user.password == Digest::MD5.hexdigest(password)
+    #raise "#{email} doesn't exist!" if !(user)
+    if user && user.password == Digest::MD5.hexdigest(password)
       auth = user
     else
-      raise "Incorrect Password!"
+      raise "Incorrect Username or Password!"
     end
     return auth
   end
