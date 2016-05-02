@@ -66,5 +66,7 @@ module Onemonthsimple
     config.assets.version = '1.0'
 
     I18n.config.enforce_available_locales = false
+
+    config.middleware.use Rack::Attack
   end
 end
