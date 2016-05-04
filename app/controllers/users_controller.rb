@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   def update
     message = false
-    user = User.find(:first, :conditions => "user_id = '#{params[:user][:user_id]}'")
+    user = User.find(:first, :conditions => ["user_id = ?", "#{params[:user][:user_id]}"])
     if user
       user.skip_user_id_assign = true
       user.skip_hash_password = true
