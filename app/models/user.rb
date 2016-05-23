@@ -40,8 +40,8 @@ class User < ActiveRecord::Base
     auth = nil
     user = find_by_email(email)
     raise "#{email} doesn't exist!" if !(user)
-    #if user.password == Digest::MD5.hexdigest(password)
-    if user.password == BCrypt::Engine.hash_secret(password, user.password_salt)
+    if user.password == Digest::MD5.hexdigest(password)
+    #if user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       auth = user
     else
       raise "Incorrect Password!"
@@ -60,9 +60,9 @@ class User < ActiveRecord::Base
   def hash_password
     unless @skip_hash_password == true
       if password.present?
-        #self.password = Digest::MD5.hexdigest(password)
-        self.password_salt = BCrypt::Engine.generate_salt
-        self.password_hash = BCrypt::Engine.hash_secret(self.password, self.password_salt)
+        self.password = Digest::MD5.hexdigest(password)
+        #self.password_salt = BCrypt::Engine.generate_salt
+        #self.password_hash = BCrypt::Engine.hash_secret(self.password, self.password_salt)
       end
     end
   end
