@@ -248,14 +248,12 @@ messages.each do |message|
   m.save
 end
 
-work_info.each do |wi|
-  info = WorkInfo.new(wi.reject {|k| k == :user_id } )
-  info.user_id = wi[:user_id]
-  info.save
-end
+#work_info.each do |wi|
+  #info = WorkInfo.new(wi.reject {|k| k == :user_id } )
+  #info.user_id = wi[:user_id]
+  #info.save
+#end
 
-
-=begin
 work_info.each do |wi|
   list = [:user_id, :SSN]
   info = WorkInfo.new(wi.reject {|k| list.include?(k)})
@@ -264,4 +262,3 @@ work_info.each do |wi|
   info.SSN = wi[:SSN]
   info.save
 end
-=end
