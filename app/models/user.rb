@@ -1,7 +1,7 @@
 require 'encryption'
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :admin, :first_name, :last_name, :user_id, :password, :password_confirmation
+  attr_accessible :email, :first_name, :last_name, :user_id, :password, :password_confirmation
   validates :password, :presence => true,
                        :confirmation => true,
                        :length => {:within => 6..40},
