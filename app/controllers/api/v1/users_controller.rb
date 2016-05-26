@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
   def index
     # We removed the .as_json code from the model, just seemed like extra work.
     # dunno, maybe useful at a later time?
-    respond_with @user.admin ? User.all : @user
+    respond_with @user.admin ? User.all.as_json : @user.as_json
   end
 
   def show

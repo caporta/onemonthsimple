@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
+  def as_json
+    super(only: [:user_id, :email, :first_name, :last_name])
+  end
+
   private
 
   def self.authenticate(email, password)
